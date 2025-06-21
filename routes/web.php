@@ -15,6 +15,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Vendor3Controller;
 use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -322,3 +323,22 @@ Route::get('/wishlist-debug', function() {
         'session_id' => session()->getId()
     ]);
 })->name('wishlist.debug');
+
+// Temporary route for running seeders (REMOVE AFTER USE)
+Route::get('/run-seeders/{secret_key}', function($secret_key) {
+    if ($secret_key !== 'utm_secret_2025') {
+        return 'Unauthorized';
+    }
+
+    try {
+        // Run specific seeders in the correct order
+        Artisan::call('db:seed', ['--class' => 'VendorLogInSeeder']);
+        Artisan::call('db:seed', ['--class' => 'VendorSeeder']);
+        Artisan::call('db:seed', ['--class' => 'ProductSeeder']);
+        Artisan::call('db:seed', ['--class' => 'UTMMartProductSeeder']);
+
+        return 'Seeders executed successfully! Products should now appear.';
+    } catch (\Exception $e) {
+        return 'Error running seeders: ' . $e->getMessage();
+    }
+})->name('run.seeders');

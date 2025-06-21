@@ -447,7 +447,14 @@ class UTMMartProductSeeder extends Seeder
 
         // Insert all products
         foreach ($products as $product) {
-            Product::create($product);
+            // Check if product already exists to avoid duplicates
+            $exists = Product::where('slug', $product['slug'])->exists();
+
+            if (!$exists) {
+                Product::create($product);
+            }
         }
+
+        $this->command->info('UTM Mart products seeded successfully!');
     }
 }
