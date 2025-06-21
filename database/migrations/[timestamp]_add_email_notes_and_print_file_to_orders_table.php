@@ -9,15 +9,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-
-            $table->string('print_file')->nullable()->after('notes');
+            if (!Schema::hasColumn('orders', 'print_file')) {
+                $table->string('print_file')->nullable()->after('notes');
+            }
         });
     }
 
     public function down(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn([ 'print_file']);
+            if (Schema::hasColumn('orders', 'print_file')) {
+                $table->dropColumn('print_file');
+            }
         });
     }
 };

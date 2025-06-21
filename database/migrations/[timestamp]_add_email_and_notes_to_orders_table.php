@@ -9,16 +9,34 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->string('user_email')->nullable()->after('user_phone');
-            $table->text('notes')->nullable()->after('user_email');
-            $table->string('print_file')->nullable()->after('notes'); // For uploaded files to print
+            if (!Schema::hasColumn('orders', 'user_email')) {
+                $table->string('user_email')->nullable()->after('user_phone');
+            }
+
+            if (!Schema::hasColumn('orders', 'notes')) {
+                $table->text('notes')->nullable()->after('user_email');
+            }
+
+            if (!Schema::hasColumn('orders', 'print_file')) {
+                $table->string('print_file')->nullable()->after('notes'); // For uploaded files to print
+            }
         });
     }
 
     public function down(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn(['user_email', 'notes', 'print_file']);
+            if (Schema::hasColumn('orders', 'user_email')) {
+                $table->dropColumn('user_email');
+            }
+
+            if (Schema::hasColumn('orders', 'notes')) {
+                $table->dropColumn('notes');
+            }
+
+            if (Schema::hasColumn('orders', 'print_file')) {
+                $table->dropColumn('print_file');
+            }
         });
     }
 };
