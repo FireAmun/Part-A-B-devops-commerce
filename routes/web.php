@@ -324,7 +324,7 @@ Route::get('/wishlist-debug', function() {
     ]);
 })->name('wishlist.debug');
 
-// Temporary route for running seeders (REMOVE AFTER USE)
+// Temporary routes for maintenance (REMOVE AFTER USE)
 Route::get('/run-seeders/{secret_key}', function($secret_key) {
     if ($secret_key !== 'utm_secret_2025') {
         return 'Unauthorized';
@@ -342,3 +342,27 @@ Route::get('/run-seeders/{secret_key}', function($secret_key) {
         return 'Error running seeders: ' . $e->getMessage();
     }
 })->name('run.seeders');
+
+// Debug route
+Route::get('/debug-app/{secret_key}', function($secret_key) {
+    if ($secret_key !== 'utm_secret_2025') {
+        return 'Unauthorized';
+    }
+
+    // Clear all caches
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+
+    // Get environment info
+    $data = [
+        'app_url' => config('app.url'),
+        'is_https' => request()->secure(),
+        'session_driver' => config('session.driver'),
+        'php_version' => PHP_VERSION,
+        'laravel_version' => app()->version(),
+    ];
+
+    return response()->json($data);
+});
