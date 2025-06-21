@@ -1,0 +1,90 @@
+1. add dark mode toggle
+2. Add Animations
+3. Add a Hero Section
+Include a hero banner at the top of the page with a welcoming message, a background image, and a call-to-action button (e.g., "Explore Vendors").
+
+
+Ask:
+Delivery and pick up
+is the ui good should i continue on it or its not that important
+Report changing and what to submit, diagrams..etc
+How will other user sign in, is the one i have ok
+vendor will have seperate view from each other
+admin will have a whole dahsboard with all stuff and vendors
+user adds to cart, choose pick or delivery, if delivery asks adress, if pick up it says pick up tomorow
+
+-----------------
+
+Sync dark mode all times
+
+
+------------
+
+Payments Qr, later we use stripe
+
+-------------
+
+Log in vendor using 2fa
+
+-------
+
+maange user in admin
+
+------------
+Make Complaints
+View Products by Subcategories
+
+
+------------
+Left to do
+
+Make Complaints
+View Products by Subcategories
+Other vendor store and vendor side
+add all products
+admin side
+ai chatbot
+better ui
+
+Finish this then work on 2fa auth and other extra stuff
+
+
+---------------
+Add profuct details from dr
+
+
+-------
+
+Products listing issue in vendor
+ui issues
+order notes from user in caffe
+fix search bar in caffe
+cancel order in vendor side
+let vendor edit their products
+
+
+-----------
+
+admin side
+ai chatbot
+cancel order in vendor side
+fix search bar in caffe
+ui issues and enhance it
+Add profuct details from dr
+add more products in utm mart
+chnage passwrd in vendor using otp
+analytics in vendor
+fix dark mode in pringing
+match ui in dahbaords
+maybe add cookies and session
+
+
+-----------
+
+payment, chatbot
+overall ui and strucure
+report std uat..etc
+tell about vendors says about payment
+show insights
+ask about do i chnage passwrd of user or not or should i only add to super admin
+ask about deploy and domain
