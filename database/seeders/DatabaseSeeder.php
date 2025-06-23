@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             \Database\Seeders\VendorSeeder::class,
             \Database\Seeders\ProductSeeder::class,
             \Database\Seeders\UTMMartProductSeeder::class,
-            // ...other seeders...
+            \Database\Seeders\AdminSeeder::class,
         ]);
     }
 }
