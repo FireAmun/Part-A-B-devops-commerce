@@ -16,12 +16,27 @@ class Product extends Model
         'seo_title', 'seo_description'
     ];
 
-    // Add the missing relationships
+    /**
+     * Get the vendor that owns the product.
+     * This product belongs to a VendorLogIn record identified by vendor_id
+     */
     public function vendor()
     {
         return $this->belongsTo(VendorLogIn::class, 'vendor_id');
     }
 
+    /**
+     * Get the vendor entity associated with this product.
+     * This is an indirect relationship through VendorLogIn
+     */
+    public function vendorDetails()
+    {
+        return $this->vendor->vendor();
+    }
+
+    /**
+     * Get the orders that include this product.
+     */
     public function orders()
     {
         return $this->hasMany(Order::class);

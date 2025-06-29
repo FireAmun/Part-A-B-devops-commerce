@@ -18,4 +18,28 @@ class Vendor extends Model
         'fb_link',
         'status',
     ];
+
+    /**
+     * Get the vendor login information associated with this vendor.
+     */
+    public function vendorLogin()
+    {
+        return $this->belongsTo(VendorLogIn::class, 'vendor_id', 'id');
+    }
+
+    /**
+     * Get the products sold by this vendor.
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    /**
+     * Get the orders associated with this vendor.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

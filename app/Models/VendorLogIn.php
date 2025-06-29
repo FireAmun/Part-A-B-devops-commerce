@@ -19,4 +19,20 @@ class VendorLogIn extends Authenticatable
         'google2fa_secret',
         'remember_token',
     ];
+
+    /**
+     * Get the vendor details associated with this vendor login.
+     */
+    public function vendor()
+    {
+        return $this->hasOne(Vendor::class, 'id', 'vendor_id');
+    }
+
+    /**
+     * Get the products associated with this vendor.
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'vendor_id');
+    }
 }

@@ -284,6 +284,9 @@ Route::get('/refresh-csrf', function () {
     return response()->json(['token' => csrf_token()]);
 });
 
+// Benchmark route for refactoring analysis
+Route::get('/benchmark', [App\Http\Controllers\BenchmarkController::class, 'index'])->name('benchmark');
+
 // Chatbot API route
 Route::post('/chatbot/message', [App\Http\Controllers\ChatbotController::class, 'chat'])
     ->middleware('auth')
