@@ -15,6 +15,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Vendor3Controller;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BenchmarkController;
 use Illuminate\Support\Facades\Artisan;
 
 /*
@@ -47,6 +48,9 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'
 Route::get('/home', function () {
     return view('home');
 })->middleware('auth')->name('home');
+
+// Benchmark route
+Route::get('/benchmark', [BenchmarkController::class, 'runBenchmark'])->name('benchmark');
 
 // Vendor Selection and Authentication Routes
 Route::get('/vendor/select', [VendorLoginController::class, 'selectVendor'])->name('vendor.select');

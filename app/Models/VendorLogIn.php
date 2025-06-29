@@ -12,6 +12,7 @@ class VendorLogIn extends Authenticatable
         'name',
         'password',
         'google2fa_secret',
+        'vendor_id',
     ];
 
     protected $hidden = [
@@ -19,4 +20,20 @@ class VendorLogIn extends Authenticatable
         'google2fa_secret',
         'remember_token',
     ];
+
+    /**
+     * Get the vendor associated with this login.
+     */
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class, 'vendor_id');
+    }
+
+    /**
+     * Get the products for this vendor.
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'vendor_id');
+    }
 }
