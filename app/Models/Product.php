@@ -16,13 +16,8 @@ class Product extends Model
         'seo_title', 'seo_description'
     ];
 
-    // Relationships
+    // Add the missing relationships
     public function vendor()
-    {
-        return $this->belongsTo(Vendor::class, 'vendor_id');
-    }
-
-    public function vendorLogin()
     {
         return $this->belongsTo(VendorLogIn::class, 'vendor_id');
     }
