@@ -17,3 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Ignore presentation script copies
+PRESENTATION_SCRIPTS_* copy *.md
